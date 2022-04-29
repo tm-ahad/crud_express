@@ -1,0 +1,12 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "CRUD with express and mongoDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tahmid",
+  "license": "ISC",
+  "type": "module"
+}
