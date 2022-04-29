@@ -1,0 +1,10 @@
+1. npm init
+2. add "type": "module" in package.json file bellow "license": "ISC"
+
+==================================
+install packages with npm
+==================================
+1. npm i express
+2. npm i nodemon
+3. npm i ejs
+4. npm i mongoose
