@@ -1,17 +1,18 @@
 import student from "../models/model.js"
 import mongoose from "mongoose";
+import mongodb from "mongodb"
+let { MongoClient } = mongodb
 
 class Controller {
     static getAllDoc = async (req, res) => {
-        res.render("form");
+        res.render("form", { id: req.params.id });
     }
     static createDoc = async ({ render }, { redirect }) => {
-        redirect("/student");
         let { name, age, email } = res.body;
         let mod = new student({ name, age, email });
-         mod.save()
-            .then(t => render("index", { data: t }))
-            .catch(error => res.send(`<h1 style="color: red">error: ${error}</h1>`));
+        mod.save()
+           .then(d => render("index", { data: d }))
+           .catch(error => res.send(`<h1 style="color: red">error: ${error}</h1>`));
     };
     static updateDoc = async ({ body, params }) => {
         let { name, age, email } = body
