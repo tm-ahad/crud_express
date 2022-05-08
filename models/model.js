@@ -13,7 +13,7 @@ let sChema = new Schema({
         type: Number,
         min: 6,
         max: 60,
-        required: true
+        required: true,
     },
     email: {
         type: String,
@@ -24,4 +24,6 @@ let sChema = new Schema({
     }
 })
 let student = model("student", sChema)
-export default student
+let mod = new student({ name: "tahmid", age: 10, email: "tm.ahad@gmail.com" })
+mod.save()
+export default student  

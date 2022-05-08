@@ -1,18 +1,20 @@
 import student from "../models/model.js"
-import mongoose from "mongoose";
-import mongodb from "mongodb"
-let { MongoClient } = mongodb
 
 class Controller {
     static getAllDoc = async (req, res) => {
-        res.render("form", { id: req.params.id });
+        let result = student.find()
+        console.log(result)
+        res.render("form", { result });
     }
-    static createDoc = async ({ render }, { redirect }) => {
-        let { name, age, email } = res.body;
-        let mod = new student({ name, age, email });
-        mod.save()
-           .then(d => render("index", { data: d }))
-           .catch(error => res.send(`<h1 style="color: red">error: ${error}</h1>`));
+    static createDoc = async ({ render, send }, { body }, next) => {
+        let [ nameI, ageI, emailI ] = document.getElementByTagName("input")
+        let name = nameI.value
+        let age = ageI.value
+        let email = emailI.value
+        let mod = new student({ name, age, email })
+        mod.save(() => {})
+           .then(data => render("form", { data }))
+           .catch(error => send(`<h1 style="color: red">error: ${error}</h1>`));
     };
     static updateDoc = async ({ body, params }) => {
         let { name, age, email } = body
@@ -29,12 +31,6 @@ class Controller {
     {
         let { id } = params
         await student.findByIdAndDelete(id, body)
-    } 
-    static get createDoc() {
-        return Controller.createDoc;
-    }
-    static set createDoc(value) {
-        Controller.createDoc = value;
     }
 }
 export default Controller
