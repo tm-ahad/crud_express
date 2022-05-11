@@ -24,6 +24,4 @@ let sChema = new Schema({
     }
 })
 let student = model("student", sChema)
-let mod = new student({ name: "tahmid", age: 10, email: "tm.ahad@gmail.com" })
-mod.save()
 export default student  

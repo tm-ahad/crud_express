@@ -3,6 +3,7 @@ import express from 'express'
 import connectdb from "./db/connectdb.js"
 import { join } from 'path'
 import router from './routes/router.js'
+import Controller from './controllers/controller.js'
 
 const app = express()
 const port = process.env.PORT || '3000'

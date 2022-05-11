@@ -1,36 +1,38 @@
+
 import student from "../models/model.js"
 
 class Controller {
-    static getAllDoc = async (req, res) => {
+    static getAllDoc = async (req, { render, redirect }) => {
         let result = student.find()
-        console.log(result)
-        res.render("form", { result });
+        return result
     }
-    static createDoc = async ({ render, send }, { body }, next) => {
-        let [ nameI, ageI, emailI ] = document.getElementByTagName("input")
-        let name = nameI.value
-        let age = ageI.value
-        let email = emailI.value
-        let mod = new student({ name, age, email })
+    static createDoc = async ({ body }, { render, redirect }) => {
+        let mod = new student(body)
         mod.save(() => {})
-           .then(data => render("form", { data }))
-           .catch(error => send(`<h1 style="color: red">error: ${error}</h1>`));
-    };
-    static updateDoc = async ({ body, params }) => {
-        let { name, age, email } = body
-        let { id } = params
-        await student.findByIdAndUpdate(id, body)
+           .then(() => console.log("database saved")) 
+           .then(data => render({ data }))
+           .catch(err => { throw err }) 
+        redirect("/")    
     }
-    static editDoc = async ({body, params}, { render }) => 
+    static updateDoc = async ({ body, params }, { redirect }) => {
+        let { id } = params
+        render("update")
+        student.findByIdAndUpdate(id, body)
+               .then(() => console.log("data updated"))
+               .catch(err => { throw err }) 
+        redirect("/")
+    }
+    static editDoc = async (req, { render, redirect }) => 
+    {
+        render("update")
+    }
+    static deleteDoc = async ({ body, params }, { redirect }) => 
     {
         let { id } = params
-        let data = student.findById(id, body)
-        render("Update", { findedData: data })
-    }
-    static deleteDoc = async ({ body, params }) => 
-    {
-        let { id } = params
-        await student.findByIdAndDelete(id, body)
+        student.findByIdAndDelete(id, body)
+               .then(() => console.log("data deleted"))
+               .catch(err => { throw err })
+        redirect("/")
     }
 }
 export default Controller

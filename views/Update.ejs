@@ -1,9 +1,44 @@
 
 <div class="card">
     <div class="card-header">
-        <h2>Update</h2>
+        <h2 class="text-center">Update</h2>
     </div>
     <div class="card-body">
-        
+        <form>
+            <label for="Name">Name</label>
+            <input 
+                class="form-control"
+                type="text" maxlength="18" 
+                minlength="5"
+                placeholder="Enter your name" 
+                name="name"
+                required
+            >
+        </form>
+        <form>
+            <label for="Age">Age</label>
+            <input 
+                type="number" 
+                max="60" 
+                minlength="6" 
+                placeholder="Enter your age"
+                name="age"
+                required
+            >
+        </form>
+        <form>
+            <label for="eMail">Email</label>
+            <input 
+                type="text"
+                minlength="13" 
+                maxlength="45"
+                placeholder="Enter your email"
+                name="email" 
+                required
+            >
+        </form>
+        <form action="/update/:id" method="post">
+            <button class="btn btn-succsess">Update</button>
+        </form>
     </div>
 </div>

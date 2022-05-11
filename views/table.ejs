@@ -1,15 +1,29 @@
-<% let ex = 5<%>
+<% let ind = 0<%>
 <table class="table table-success table-striped">
     <tr>
       <th>#</th>
       <th>Name</th>
       <th>Age</th>
       <th>Email</th>
+      <th>Action</th>
     </tr>
     <tr>
-      <td><%=ex%></td>
-      <td>Tahmid</td>
-      <td>9</td>
-      <td>tm.ahad.bd@gmail.com</td>
+      <td><%=i++%></td>
+      <td><%=data.name%></td>
+      <td><%=data.age%></td>
+      <td><%=data.email%></td>
+      <td>
+          <form action="/edit/:id" method="get"> 
+               <button class="btn btn-danger">
+                    <i class="fa-duotone fa-file-pen"></i>
+               </button>
+          </form>   
+
+          <form action="/delete/:id" method="post">
+               <button class="btn btn-secondary">
+                    <i class="fa-duotone fa-trash-can"></i>
+               </button>
+          </form>
+      </td>
     </tr>
 </table>
